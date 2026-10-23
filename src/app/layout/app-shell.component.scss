@@ -1,0 +1,23 @@
+/* Language dropdown — change colors only */
+.top-actions .language-selector select {
+  background-color: #ffffff;
+  color: #2564eb6b;
+  border-color: #2563eb;
+}
+
+.top-actions .language-selector select:hover {
+  background-color: #eff6ff;
+}
+
+/* Log out button — change colors only */
+.top-actions .btn.btn-ghost.btn-small {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.top-actions .btn.btn-ghost.btn-small:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}

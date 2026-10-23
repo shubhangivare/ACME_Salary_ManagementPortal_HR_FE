@@ -1,0 +1,122 @@
+<div class="login-page signup-page">
+  <section class="login-decoration signup-decoration">
+    <a class="login-brand" routerLink="/"
+      ><span class="brand-mark">P</span><strong>PeoplePay</strong></a
+    >
+    <div class="login-copy">
+      <div class="eyebrow light">PEOPLE FIRST. DATA SMARTER.</div>
+      <h1>Your people<br />workspace starts here.</h1>
+      <p>
+        Create your account to access employee information, salary workflows,
+        and your team's HR tools.
+      </p>
+      <div class="login-stat-row">
+        <div><strong>Secure</strong><span>Protected sign-up</span></div>
+        <div><strong>Role-aware</strong><span>Relevant access</span></div>
+      </div>
+    </div>
+    <div class="login-bottom">BUILT FOR MODERN PEOPLE TEAMS</div>
+  </section>
+  <section class="login-panel signup-panel">
+    <form
+      class="login-card signup-card"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      novalidate
+    >
+      <a class="signup-back" routerLink="/">← Back to options</a>
+      <div class="eyebrow">GET STARTED</div>
+      <h2>Create your account</h2>
+      <p class="muted">Enter your details below to register.</p>
+      <div class="signup-field">
+        <label for="displayName">Display name <span>*</span></label
+        ><input
+          id="displayName"
+          formControlName="displayName"
+          autocomplete="name"
+          placeholder="e.g. Priya Sharma"
+          required
+        /><small
+          class="field-error"
+          *ngIf="
+            form.controls.displayName.touched &&
+            form.controls.displayName.invalid
+          "
+          >Enter a display name (2–100 characters).</small
+        >
+      </div>
+      <div class="signup-field">
+        <label for="username">Username <span>*</span></label
+        ><input
+          id="username"
+          formControlName="username"
+          autocomplete="username"
+          placeholder="Choose a username"
+          required
+        /><small class="field-help"
+          >3–50 characters: letters, numbers, dot, underscore or hyphen.</small
+        ><small
+          class="field-error"
+          *ngIf="
+            form.controls.username.touched && form.controls.username.invalid
+          "
+          >Use 3–50 valid username characters.</small
+        >
+      </div>
+      <div class="signup-field">
+        <label for="password">Password <span>*</span></label
+        ><input
+          id="password"
+          formControlName="password"
+          type="password"
+          autocomplete="new-password"
+          placeholder="At least 8 characters"
+          required
+        /><small class="field-help">Use at least 8 characters.</small
+        ><small
+          class="field-error"
+          *ngIf="
+            form.controls.password.touched && form.controls.password.invalid
+          "
+          >Password must be 8–72 characters.</small
+        >
+      </div>
+      <div class="signup-field">
+        <label for="role">Account role <span>*</span></label
+        ><select id="role" formControlName="role" required>
+          <option value="" disabled>Select a role</option>
+          @for (roleOption of roles(); track roleOption) {
+            <option [value]="roleOption">
+              {{
+                roleOption === "ADMIN"
+                  ? "Administrator (ADMIN)"
+                  : roleOption === "HR"
+                    ? "Human Resources (HR)"
+                    : roleOption
+              }}
+            </option>
+          }</select
+        ><small class="field-help"
+          >Available roles are loaded from the server.</small
+        >
+      </div>
+      @if (error()) {
+        <div class="error-banner" role="alert">{{ error() }}</div>
+      }
+      <button
+        class="btn btn-primary login-submit signup-submit"
+        type="submit"
+        [disabled]="submitting() || form.invalid"
+      >
+        {{ submitting() ? "Creating account…" : "Create account" }}
+        <span>→</span>
+      </button>
+      <p class="login-note">
+        Already have an account? <a routerLink="/login">Sign in</a>
+      </p>
+      <p class="signup-disclaimer">
+        Your account access follows the role assigned during registration.
+      </p>
+    </form>
+  </section>
+</div>

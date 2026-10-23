@@ -1,0 +1,75 @@
+<div class="login-page">
+  <div class="login-decoration">
+    <div class="login-orb orb-one"></div>
+    <div class="login-orb orb-two"></div>
+    <div class="login-brand">
+      <span class="brand-mark">P</span><strong>PeoplePay</strong>
+    </div>
+    <div class="login-copy">
+      <div class="eyebrow light">PEOPLE FIRST. DATA SMARTER.</div>
+      <h1>Compensation clarity<br />starts here.</h1>
+      <p>
+        A single workspace for employee data, salary insights, and confident HR
+        decisions.
+      </p>
+      <div class="login-stat-row">
+        <div><strong>360°</strong><span>Employee visibility</span></div>
+        <div><strong>Secure</strong><span>Role-aware workspace</span></div>
+      </div>
+    </div>
+    <div class="login-bottom">BUILT FOR MODERN PEOPLE TEAMS</div>
+  </div>
+  <div class="login-panel">
+    <form class="login-card" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="eyebrow">WELCOME BACK</div>
+      <h2>Sign in to your workspace</h2>
+      <p class="muted">Sign in with your PeoplePay account.</p>
+      @if (registered()) { <div class="success-banner">Registration successful. You can now sign in.</div> }
+      <label for="role">Sign in as</label
+      ><select id="role" formControlName="role">
+        @for (roleOption of roles(); track roleOption) {
+          <option [value]="roleOption">{{ roleOption === "ADMIN" ? "System administrator" : roleOption === "HR" ? "HR manager" : roleOption }}</option>
+        }
+      </select>
+      <label for="username">Username</label
+      ><input
+        id="username"
+        formControlName="username"
+        autocomplete="username"
+        required
+        placeholder="Enter username"
+      />
+      <label for="password">Password</label
+      ><input
+        id="password"
+        formControlName="password"
+        type="password"
+        autocomplete="current-password"
+        required
+        placeholder="Enter password"
+      />
+      @if (error()) {
+        <div class="error-banner">{{ error() }}</div>
+      }
+      <button
+        class="btn btn-primary login-submit"
+        type="submit"
+        [disabled]="submitting() || form.invalid"
+      >
+        {{ submitting() ? "Signing in…" : "Sign in" }} <span>→</span>
+      </button>
+      <!-- <div style="margin-top: 20px; text-align: center;">
+        <a routerLink="/signup">← Back to Signup</a>
+      </div> -->
+      <div style="margin-top: 20px; text-align: center;">
+        <a routerLink="/signup"  class="signUp">
+          ← Back to Signup
+        </a>
+      </div>
+      <p class="login-note">New here? <a routerLink="/signup">Create an account</a></p>
+      <p class="login-note">
+        Demo only · Do not use real employee or salary data.
+      </p>
+    </form>
+  </div>
+</div>
